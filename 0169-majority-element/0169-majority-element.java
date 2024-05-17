@@ -1,20 +1,17 @@
-import java.util.HashMap;
-
 class Solution {
     public int majorityElement(int[] nums) {
-        HashMap<Integer, Integer> hm = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (hm.containsKey(nums[i])) {
-                int val = hm.get(nums[i]);
-                hm.put(nums[i], val+1);
-            }
+        // Moore's voting algorithm
+        int majorityElement = nums[0], count = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == majorityElement)
+                count++;
             else
-                hm.put(nums[i], 1);
+                count--;
+            if (count == 0) {
+                majorityElement = nums[i+1];
+                count = 0;
+            }
         }
-        for (int key: hm.keySet()) {
-            if (hm.get(key) > Math.floor(nums.length / 2))
-                return key;
-        }
-        return 0;
+        return majorityElement;
     }
 }
