@@ -8,12 +8,14 @@ class Solution {
         return maxi;
     }
     
-    public int calculateHours(int[] arr, int div) {
+    public boolean calculateHours(int[] arr, int div, int h) {
         int res = 0;
         for (int i = 0; i < arr.length; i++) {
             res += Math.ceil((double) arr[i] / (double) div);
+            if (res > h)
+                return false;
         }
-        return res;
+        return true;
     }
     
     public int minEatingSpeed(int[] piles, int h) {
@@ -24,14 +26,13 @@ class Solution {
         int low = 1, high = maxi, ans = -1;
         while (low <= high) {
             int mid = (low + high) / 2;
-            int hoursTaken = calculateHours(piles, mid);
-            //System.out.println(hoursTaken + " " + mid);
-            if (hoursTaken <= h) {
+            boolean hoursTaken = calculateHours(piles, mid, h);
+            if (hoursTaken == false)
+                low = mid + 1;
+            else {
                 ans = mid;
                 high = mid - 1;
             }
-            else
-                low = mid + 1;
         }
         return ans;
     }
