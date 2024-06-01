@@ -11,7 +11,7 @@ class Solution {
     public int calculateHours(int[] arr, int div) {
         int res = 0;
         for (int i = 0; i < arr.length; i++) {
-            res += (int) Math.ceil(arr[i] / (double) div);
+            res += Math.ceil((double) arr[i] / (double) div);
         }
         return res;
     }
@@ -26,7 +26,7 @@ class Solution {
             int mid = (low + high) / 2;
             int hoursTaken = calculateHours(piles, mid);
             //System.out.println(hoursTaken + " " + mid);
-            if (hoursTaken > 0 && hoursTaken <= h) {
+            if (hoursTaken <= h) {
                 ans = mid;
                 high = mid - 1;
             }
