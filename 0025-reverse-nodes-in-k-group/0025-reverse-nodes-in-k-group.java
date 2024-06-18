@@ -45,9 +45,8 @@ class Solution {
                 curr.next = null;
                 ListNodePairs rPair = reverseList(prevFirst.next);
                 prevFirst.next = rPair.head;
-                ListNode tail = rPair.tail;
-                prevFirst = tail;
-                tail.next = nextNode;
+                prevFirst = rPair.tail;
+                prevFirst.next = nextNode;
                 curr = nextNode;
                 i = 1;
             }
