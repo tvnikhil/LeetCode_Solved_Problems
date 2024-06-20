@@ -1,24 +1,27 @@
 class Solution {
-    public Set<List<Integer>> twoSum(int[] nums, int fromIdx, int sum, Set<List<Integer>> st) {
-        HashMap<Integer, Integer> hm = new HashMap<>();
-        for (int i = fromIdx; i < nums.length; i++) {
-            if (hm.get(sum - nums[i]) != null) {
-                List<Integer> temp = Arrays.asList(nums[fromIdx - 1], nums[i], nums[hm.get(sum - nums[i])]);
-                hm.put(nums[i], i);
-                temp.sort(null);
-                st.add(temp);
-            }
-            else
-                hm.put(nums[i], i);
-        }
-        return st;
-    }
-    
     public List<List<Integer>> threeSum(int[] nums) {
-        Set<List<Integer>> st = new HashSet<>();
-        for (int i = 0; i < nums.length - 1; i++)
-            st = twoSum(nums, i+1, 0-nums[i], st);
-        List<List<Integer>> ans = new ArrayList<>(st);
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i++) {
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+            int forSum = -(nums[i]);
+            int j = i + 1, k = nums.length - 1;
+            while (j < k) {
+                if (nums[j] + nums[k] == forSum) {
+                    List<Integer> pair = Arrays.asList(nums[i], nums[j], nums[k]);
+                    ans.add(pair);
+                    j++;
+                    k--;
+                    while (j < k && nums[j] == nums[j - 1]) j++;
+                    while (j < k && nums[k] == nums[k + 1]) k--;
+                }
+                else if (nums[j] + nums[k] < forSum)
+                    j++;
+                else
+                    k--;
+            }
+        }
         return ans;
     }
 }
