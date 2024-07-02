@@ -1,20 +1,22 @@
 class Solution {
-    public void generateSubsets(int[] nums, int idx, List<Integer> subset, Set<ArrayList<Integer>> st) {
-        if (idx >= nums.length) {
-            st.add(new ArrayList(subset));
-            return;
+    public void generateSubsets(int[] nums, int idx, List<Integer> subset, List<List<Integer>> ans) {
+        ans.add(new ArrayList<>(subset));
+        int prev = -11;
+        for (int i = idx; i < nums.length; i++) {
+            if (nums[i] == prev)
+                continue;
+            subset.add(nums[i]);
+            generateSubsets(nums, i + 1, subset, ans);
+            subset.remove(subset.size() - 1);
+            prev = nums[i];
         }
-        subset.add(nums[idx]);
-        generateSubsets(nums, idx + 1, subset, st);
-        subset.remove(subset.size() - 1);
-        generateSubsets(nums, idx + 1, subset, st);
     }
     
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
-        Set<ArrayList<Integer>> st = new HashSet<>();
         List<Integer> subset = new ArrayList<>();
-        generateSubsets(nums, 0, subset, st);
-        return new ArrayList<>(st);
+        List<List<Integer>> ans = new ArrayList<>();
+        generateSubsets(nums, 0, subset, ans);
+        return ans;
     }
 }
