@@ -11,25 +11,21 @@ class Solution:
                 return False
         return True
     
-    def placeDot(self, currIp):
-        if currIp[-1] == "0" and currIp[len(currIp) - 1] == ".":
-            return True
-        l = currIp.split(".")
-        if len(l[-1]) > 3:
-            return True
-    
     def generate(self, s, idx, currIp, dotCnt, ans):
+        l = currIp[:len(currIp)-1].split(".")
+        last = l[-1]
+        if len(last) > 1 and last[0] == "0" and int(last) >= 0:
+            return
+        if len(last) > 3 or (last != "" and int(last) > 255):
+            return
         if dotCnt == 3 and self.checkValid(currIp + s[idx:]):
             ans.append(str(currIp + s[idx:]))
             return
         if dotCnt > 3 or idx >= len(s):
             return
         currIp += s[idx]
-        if self.placeDot(currIp):
-            self.generate(s, idx+1, currIp+".", dotCnt+1, ans)
-        else:
-            self.generate(s, idx+1, currIp+".", dotCnt+1, ans)
-            self.generate(s, idx+1, currIp, dotCnt, ans)
+        self.generate(s, idx+1, currIp+".", dotCnt+1, ans)
+        self.generate(s, idx+1, currIp, dotCnt, ans)
     
     def restoreIpAddresses(self, s: str) -> List[str]:
         ans = []
