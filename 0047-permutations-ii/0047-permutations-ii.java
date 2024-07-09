@@ -1,28 +1,33 @@
 class Solution {
-    public void swap(int a, int b, int[] nums) {
-        int temp = nums[b];
-        nums[b] = nums[a];
-        nums[a] = temp;
-    }
-    
-    public void helper(int idx, int[] nums, Set<List<Integer>> hs) {
-        if (idx >= nums.length) {
-            List<Integer> currList = new ArrayList<>();
-            for (int i = 0; i < nums.length; i++)
-                currList.add(nums[i]);
-            hs.add(currList);
+    public void helper(int[] nums, Map<Integer, Integer> hm, 
+                       List<Integer> currList,
+                       List<List<Integer>> ans) {
+        if (currList.size() == nums.length) {
+            ans.add(new ArrayList<>(currList));
             return;
         }
-        for (int i = idx; i < nums.length; i++) {
-            swap(i, idx, nums);
-            helper(idx+1, nums, hs);
-            swap(i, idx, nums);
+        for (Integer key : hm.keySet()) {
+            if (hm.get(key) > 0) {
+                currList.add(key);
+                hm.put(key, hm.get(key)-1);
+                helper(nums, hm, currList, ans);
+                hm.put(key, hm.get(key)+1);
+                currList.remove(currList.size()-1);
+            }
         }
     }
     
     public List<List<Integer>> permuteUnique(int[] nums) {
-        Set<List<Integer>> hs = new HashSet<>();
-        helper(0, nums, hs);
-        return new ArrayList<>(hs);
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> currList = new ArrayList<>();
+        Map<Integer, Integer> hm = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (hm.containsKey(nums[i]))
+                hm.put(nums[i], hm.get(nums[i]) + 1);
+            else
+                hm.put(nums[i], 1);
+        }
+        helper(nums, hm, currList, ans);
+        return ans;
     }
 }
