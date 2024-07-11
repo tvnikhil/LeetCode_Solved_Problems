@@ -5,12 +5,15 @@ class Solution:
                 return str(currString)
             return ""
         absent1 = self.generate(currString+"0", currLen+1, maxLen, nums)
-        absent2 = self.generate(currString+"1", currLen+1, maxLen, nums)
         if absent1 != "": return absent1
+        absent2 = self.generate(currString+"1", currLen+1, maxLen, nums)
         if absent2 != "": return absent2
         return ""
     
     def findDifferentBinaryString(self, nums: List[str]) -> str:
-        absent = self.generate("", 0, len(nums[0]), nums)
+        d = dict()
+        for i in range(0, len(nums)):
+            d[nums[i]] = 1
+        absent = self.generate("", 0, len(nums[0]), d)
         return absent
         
