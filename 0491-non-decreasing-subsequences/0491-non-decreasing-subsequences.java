@@ -1,21 +1,17 @@
 class Solution {
-    boolean check(List<Integer> subseq) {
-        for (int i = 0; i < subseq.size()-1; i++) {
-            if (subseq.get(i) > subseq.get(i+1))
-                return false;
-        }
-        return true;
-    }
-    
     void dfs(int[] nums, int idx, List<Integer> subseq, Set<List<Integer>> hs) {
         if (idx >= nums.length) {
-            if (subseq.size() >= 2 && check(subseq))
+            if (subseq.size() >= 2)
                 hs.add(new ArrayList<>(subseq));
             return;
         }
-        subseq.add(nums[idx]);
-        dfs(nums, idx+1, subseq, hs);
-        subseq.remove(subseq.size()-1);
+        if (subseq.size() == 0 || (subseq.size() > 0 && 
+                                   nums[idx] >= subseq.get(subseq.size()-1))) 
+        {
+            subseq.add(nums[idx]);
+            dfs(nums, idx+1, subseq, hs);
+            subseq.remove(subseq.size()-1);
+        }
         dfs(nums, idx+1, subseq, hs);
     }
     
