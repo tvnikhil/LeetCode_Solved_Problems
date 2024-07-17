@@ -1,6 +1,5 @@
 class Solution {
     void dfs(int[] cookies, int idx, List<Integer> sums, int limit, int[] ans) {
-        //System.out.println(sums);
         if (idx >= cookies.length) {
             ans[0] = Math.min(ans[0], sums.get(sums.size()-1));
             return;
@@ -15,9 +14,8 @@ class Solution {
                 dfs(cookies, idx+1, sums, limit, ans);
                 sums.set(i, prevVal);
                 sums.set(sums.size()-1, prevMax);
+                if (sums.get(i) == 0) break;
             }
-            else
-                continue;
         }
     }
     
