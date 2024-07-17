@@ -15,11 +15,26 @@
  */
 class Solution {
     void getInOrder(TreeNode root, List<Integer> inOrder) {
-        if (root == null)
-            return;
-        getInOrder(root.left, inOrder);
-        inOrder.add(root.val);
-        getInOrder(root.right, inOrder);
+        // if (root == null)
+        //     return;
+        // getInOrder(root.left, inOrder);
+        // inOrder.add(root.val);
+        // getInOrder(root.right, inOrder);
+        Stack<TreeNode> stk = new Stack<>();
+        TreeNode node = root;
+        while (true) {
+            if (node != null) {
+                stk.push(node);
+                node = node.left;
+            }
+            else if (node == null && stk.isEmpty() == true)
+                break;
+            else {
+                node = stk.pop();
+                inOrder.add(node.val);
+                node = node.right;
+            }
+        }
     }
     
     public List<Integer> inorderTraversal(TreeNode root) {
