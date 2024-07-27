@@ -9,12 +9,8 @@ class Solution:
         if len(pre) == 0 or len(ino) == 0: return None
         root = TreeNode(pre[0])
         leftLimit = ino.index(pre[0])
-        leftIno = ino[0:leftLimit]
-        rightIno = ino[leftLimit+1:]
-        leftPre = pre[1:1+len(leftIno)]
-        rightPre = pre[1+len(leftPre):]
-        root.left = self.construct(leftPre, leftIno)
-        root.right = self.construct(rightPre, rightIno)
+        root.left = self.construct(pre[1:1+leftLimit], ino[0:leftLimit])
+        root.right = self.construct(pre[1+leftLimit:], ino[leftLimit+1:])
         return root
     
     def buildTree(self, pre: List[int], ino: List[int]) -> Optional[TreeNode]:
