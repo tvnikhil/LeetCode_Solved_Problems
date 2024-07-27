@@ -8,11 +8,7 @@ class Solution:
     def construct(self, pre, ino):
         if len(pre) == 0 or len(ino) == 0: return None
         root = TreeNode(pre[0])
-        leftLimit = 0
-        for i in range(0, len(ino)):
-            if pre[0] == ino[i]:
-                leftLimit = i
-                break
+        leftLimit = ino.index(pre[0])
         leftIno = ino[0:leftLimit]
         rightIno = ino[leftLimit+1:]
         leftPre = pre[1:1+len(leftIno)]
