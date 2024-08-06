@@ -8,10 +8,11 @@ class Solution:
                     ans.append(temp)
         return ans
     
-    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+    def ladderLength(self, beginWord: str, endWord: str, wL: List[str]) -> int:
         vis,letters = {},{}
         for i in range(0, len(beginWord)):
             letters[i] = set()
+        wordList = set(wL)
         for i in wordList:
             vis[i] = 0
             for j in range(0, len(i)):
