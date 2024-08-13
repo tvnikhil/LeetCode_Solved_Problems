@@ -27,13 +27,13 @@ class Solution {
         int[] price = new int[n];
         for (int i = 0; i < n; i++) price[i] = Integer.MAX_VALUE;
         price[src] = 0;
-        PriorityQueue<Tuple> pque = new PriorityQueue<>();
+        Queue<Tuple> pque = new LinkedList<>();
         pque.offer(new Tuple(0, src, 0));
         while (!pque.isEmpty()) {
             Tuple curr = pque.poll();
             int currCity = curr.node, currStop = curr.stop, currCost = curr.cost;
             if (currStop > k)
-                break;
+                continue;
             for (int i = 0; i < adj.get(currCity).size(); i++) {
                 int to = adj.get(currCity).get(i).get(0);
                 int cost = adj.get(currCity).get(i).get(1);
