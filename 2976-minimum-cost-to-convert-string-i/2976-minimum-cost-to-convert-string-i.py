@@ -13,7 +13,9 @@ class Solution:
         while que:
             curr = heapq.heappop(que)
             currCost, currNode = curr[0], curr[1]
-            if currCost > travelCost[currNode]: continue
+            # if currCost > travelCost[currNode]: continue
+            if currNode == dest:
+                break
             edges = adj[currNode]
             for edge in edges:
                 nextNode, nextCost = edge[0], edge[1]
