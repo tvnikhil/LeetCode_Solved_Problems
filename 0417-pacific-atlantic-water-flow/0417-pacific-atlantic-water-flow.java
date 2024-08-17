@@ -1,9 +1,5 @@
 class Solution {
-    void dfs(int x, int y, int[][] heights, int[] pac, int[] atl, int[][] vis, int[][] memo) {
-        if (x == 0) pac[0] = 1;
-        if (x == heights.length-1) atl[0] = 1;
-        if (y == 0) pac[0] = 1;
-        if (y == heights[0].length-1) atl[0] = 1;
+    void dfs(int x, int y, int[][] heights, int[][] vis) {
         vis[x][y] = 1;
         int[] xD = new int[]{-1,1,0,0};
         int[] yD = new int[]{0,0,1,-1};
@@ -11,16 +7,8 @@ class Solution {
             int delX = x+xD[i], delY = y+yD[i];
             if (delX < 0 || delX >= heights.length || delY < 0 || delY >= heights[0].length)
                 continue;
-            if (vis[delX][delY] == 0 && heights[delX][delY] <= heights[x][y]) {
-                if (memo[delX][delY] != 0) {
-                    if (memo[delX][delY] == -1) pac[0] = 1;
-                    else if (memo[delX][delY] == -2) atl[0] = 1;
-                    else {
-                        pac[0] = 1;
-                        atl[0] = 1;
-                    }
-                }
-                else dfs(delX, delY, heights, pac, atl, vis, memo);
+            if (vis[delX][delY] == 0 && heights[delX][delY] >= heights[x][y]) {
+                dfs(delX, delY, heights, vis);
             }
         }
     }
@@ -28,26 +16,46 @@ class Solution {
     public List<List<Integer>> pacificAtlantic(int[][] heights) {
         int m = heights.length, n = heights[0].length;
         List<List<Integer>> ans = new ArrayList<>();
-        int[][] memo = new int[m][n];
+        int[][] pac = new int[m][n];
+        int[][] atl = new int[m][n];
+        for (int i = 0; i < n; i++) {
+            if (pac[0][i] == 0)
+                dfs(0, i, heights, pac);
+        }
+        for (int i = 0; i < m; i++) {
+            if (pac[i][0] == 0)
+                dfs(i, 0, heights, pac);
+        }
+        for (int i = 0; i < n; i++) {
+            if (atl[m-1][i] == 0)
+                dfs(m-1, i, heights, atl);
+        }
+        for (int i = 0; i < m; i++) {
+            if (atl[i][n-1] == 0)
+                dfs(i, n-1, heights, atl);
+        }
+        // for (int i = 0; i < m; i++) {
+        //     for (int j = 0; j < n; j++) {
+        //         System.out.print(pac[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
+        // System.out.println();
+        // System.out.println();
+        // for (int i = 0; i < m; i++) {
+        //     for (int j = 0; j < n; j++) {
+        //         System.out.print(atl[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                int[] pac = new int[1];
-                int[] atl = new int[1];
-                int[][] vis = new int[m][n];
-                dfs(i, j, heights, pac, atl, vis, memo);
-                if (pac[0] == 1 && atl[0] == 1) {
-                    memo[i][j] = -3;
+                if (pac[i][j] == 1 && atl[i][j] == 1) {
                     List<Integer> res = new ArrayList<>();
                     res.add(i);
                     res.add(j);
                     ans.add(res);
                 }
-                else if (pac[0] == 1)
-                    memo[i][j] = -1;
-                else if (atl[0] == 1)
-                    memo[i][j] = -2;
-                else
-                    memo[i][j] = 0;
             }
         }
         return ans;
