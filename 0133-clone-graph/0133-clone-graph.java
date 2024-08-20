@@ -22,15 +22,11 @@ class Solution {
     void dfs(Node node, Set<Node> vis, Node cpy, Map<Integer, Node> hm) {
         vis.add(node);
         for (Node neigh: node.neighbors) {
-            if (hm.containsKey(neigh.val) == false) {
+            if (hm.containsKey(neigh.val) == false)
                 hm.put(neigh.val, new Node(neigh.val));
-            }
             cpy.neighbors.add(hm.get(neigh.val));
-        }
-        for (Node neigh: node.neighbors) {
-            if (!vis.contains(neigh)) {
+            if (!vis.contains(neigh))
                 dfs(neigh, vis, hm.get(neigh.val), hm);
-            }
         }
     }
     
