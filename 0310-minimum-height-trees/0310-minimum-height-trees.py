@@ -3,29 +3,27 @@ from collections import deque
 class Solution:
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
         if n == 1: return [0]
-        degree = [0] * n
-        for i in edges:
-            degree[i[0]] += 1
-            degree[i[1]] += 1
         adj = [[] for _ in range(n)]
-        for i in edges:
-            adj[i[0]].append(i[1])
-            adj[i[1]].append(i[0])
-        que = []
+        que = deque()
+        degree = [0] * n
+        for st, end in edges:
+            degree[st] += 1
+            degree[end] += 1
+            adj[st].append(end)
+            adj[end].append(st)
         for i in range(n):
             if degree[i] == 1:
                 que.append(i)
-        que = deque(que)
-        rem = n
+        rm = n
         while que:
-            if rem <= 2:
+            if rm <= 2:
                 return que
             for i in range(len(que)):
-                node = que.popleft()
-                rem -= 1
-                for neigh in adj[node]:
+                curr = que.popleft()
+                degree[curr] -= 1
+                rm -= 1
+                for neigh in adj[curr]:
                     degree[neigh] -= 1
                     if degree[neigh] == 1:
                         que.append(neigh)
-        return que
-                
+        return None
