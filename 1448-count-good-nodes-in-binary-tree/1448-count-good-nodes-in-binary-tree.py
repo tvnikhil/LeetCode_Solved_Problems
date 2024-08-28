@@ -5,16 +5,14 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def dfs(self, src, grPath, ans):
+    def dfs(self, src, grPath):
         if not src:
-            return
-        #print(src.val, path, grPath)
-        if src.val >= grPath: ans[0] += 1
-        self.dfs(src.left, max(grPath, src.val), ans)
-        self.dfs(src.right, max(grPath, src.val), ans)
+            return 0
+        isGood = 1 if src.val >= grPath else 0
+        left = self.dfs(src.left, max(grPath, src.val))
+        right = self.dfs(src.right, max(grPath, src.val))
+        return isGood+left+right
     
     def goodNodes(self, root: TreeNode) -> int:
-        ans = [0]
-        self.dfs(root, float("-inf"), ans)
-        return ans[0]
+        return self.dfs(root, float("-inf"))
         
