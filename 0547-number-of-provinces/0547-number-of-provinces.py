@@ -2,6 +2,7 @@ class DisjointSet:
     def __init__(self, n):
         self.rank = [0] * n
         self.parents = [i for i in range(n)]
+        self.sizeOfSet = [1] * n
         
     def findParent(self, u):
         if u == self.parents[u]:
@@ -9,6 +10,18 @@ class DisjointSet:
         self.parents[u] = self.findParent(self.parents[u])
         return self.parents[u]
     
+    def unionBySize(self, u, v):
+        upu, upv = self.findParent(u), self.findParent(v)
+        if upu == upv:
+            return
+        upuSize, upvSize = self.sizeOfSet[u], self.sizeOfSet[v]
+        if upuSize < upvSize:
+            self.parents[upu] = upv
+            self.sizeOfSet[upv] += self.sizeOfSet[upu]
+        else:
+            self.parents[upv] = upu
+            self.sizeOfSet[upu] += self.sizeOfSet[upv]
+     
     def unionByRank(self, u, v):
         upu, upv = self.findParent(u), self.findParent(v)
         if upu == upv:
@@ -35,8 +48,8 @@ class Solution:
         # using union find
         djs = DisjointSet(n)
         for u, v in edges:
-            djs.unionByRank(u, v)
-        
+            djs.unionBySize(u, v)
+
         parSet = set()
         for i in range(n):
             parSet.add(djs.findParent(i))
