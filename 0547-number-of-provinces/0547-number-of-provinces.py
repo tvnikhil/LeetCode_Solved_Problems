@@ -14,7 +14,7 @@ class DisjointSet:
         upu, upv = self.findParent(u), self.findParent(v)
         if upu == upv:
             return
-        upuSize, upvSize = self.sizeOfSet[u], self.sizeOfSet[v]
+        upuSize, upvSize = self.sizeOfSet[upu], self.sizeOfSet[upv]
         if upuSize < upvSize:
             self.parents[upu] = upv
             self.sizeOfSet[upv] += self.sizeOfSet[upu]
