@@ -17,18 +17,26 @@ class Solution:
         que = deque([root])
         
         while que:
-            level = []
+            #level = []
+            prev = None
             for i in range(len(que)):
                 node = que.popleft()
-                level.append(node)
+                
+                if not prev:
+                    prev = node
+                else:
+                    prev.next = node
+                    prev = node
+                
+                # level.append(node)
                 if node.left:
                     que.append(node.left)
                 if node.right:
                     que.append(node.right)
-            i = 1
-            while i < len(level):
-                level[i-1].next = level[i]
-                i += 1
+            # i = 1
+            # while i < len(level):
+            #     level[i-1].next = level[i]
+            #     i += 1
         
         return temp
         
