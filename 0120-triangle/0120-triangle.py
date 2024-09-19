@@ -9,22 +9,33 @@ class Solution:
         
 #         return dp[(x,y)]
     
-    def dfs(self, x, y, tri, dp):
-        # f(x,y) -> has the min time to go from that position to the last row
-        if x == len(tri)-1:
-            return tri[x][y]
-        if (x,y) in dp:
-            return dp[(x,y)]
-        left = self.dfs(x+1,y,tri,dp)
-        right = self.dfs(x+1,y+1,tri,dp)
+#     def dfs(self, x, y, tri, dp):
+#         # f(x,y) -> has the min time to go from that position to the last row
+#         if x == len(tri)-1:
+#             return tri[x][y]
+#         if (x,y) in dp:
+#             return dp[(x,y)]
+#         left = self.dfs(x+1,y,tri,dp)
+#         right = self.dfs(x+1,y+1,tri,dp)
         
-        dp[(x,y)] = min(left, right) + tri[x][y]
-        return dp[(x,y)]
+#         dp[(x,y)] = min(left, right) + tri[x][y]
+#         return dp[(x,y)]
     
     def minimumTotal(self, tri: List[List[int]]) -> int:
         m = len(tri)
-        dp = {}
-        return self.dfs(0,0,tri,dp)
+        dp = [[0 for j in range(i+1)] for i in range(len(tri))]
+        
+        for i in range(m-1,-1,-1):
+            for j in range(0,i+1):
+                if i == m-1:
+                    dp[i][j] = tri[i][j]
+                else:
+                    dp[i][j] = tri[i][j] + min(dp[i+1][j], dp[i+1][j+1])
+        # print(dp)
+        return dp[0][0]
+        
+        # dp = {}
+        # return self.dfs(0,0,tri,dp)
         
 #         dp = [[0 for j in range(i+1)] for i in range(len(tri))]
 #         dp[0][0] = tri[0][0]
