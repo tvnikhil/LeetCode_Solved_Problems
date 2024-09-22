@@ -1,7 +1,5 @@
 class Solution:
     def dfs(self, curr, n, ans):
-        if curr > n:
-            return
         if curr != 0:
             ans.append(curr)
         st = 0
