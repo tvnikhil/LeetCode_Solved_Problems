@@ -6,6 +6,8 @@ class Solution:
         
         m, n = len(nums), (s//2)+1
         dp = [[False for _ in range(n)] for _ in range(m)]
+        for i in range(m):
+            dp[i][0] = True
         if nums[0] <= s//2:
             dp[0][nums[0]] = True
         
