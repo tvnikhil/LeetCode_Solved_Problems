@@ -1,15 +1,27 @@
 class Solution:
     def maxEnergyBoost(self, A: List[int], B: List[int]) -> int:
         m, n = len(A), 2
-        dp = [[0 for _ in range(n)] for _ in range(m)]
-        dp[0][0],dp[0][1] = A[0],B[0]
+        dpA, dpB = A[0], B[0]
         
         for i in range(1, m):
-            for j in range(n):
-                energy = A[i] if j == 0 else B[i]
-                dp[i][j] = max(energy+dp[i-1][j], dp[i-1][(not j)])
+            tempA = max(A[i]+dpA, dpB)
+            tempB = max(B[i]+dpB, dpA)
+            dpA, dpB = tempA, tempB
+        
+        return max(dpA, dpB)
 
-        return max(dp[m-1][0], dp[m-1][1])
+# class Solution:
+#     def maxEnergyBoost(self, A: List[int], B: List[int]) -> int:
+#         m, n = len(A), 2
+#         dp = [[0 for _ in range(n)] for _ in range(m)]
+#         dp[0][0],dp[0][1] = A[0],B[0]
+        
+#         for i in range(1, m):
+#             for j in range(n):
+#                 energy = A[i] if j == 0 else B[i]
+#                 dp[i][j] = max(energy+dp[i-1][j], dp[i-1][(not j)])
+
+#         return max(dp[m-1][0], dp[m-1][1])
 
 # class Solution:
 #     def dfs(self, idx, nextDrink, A, B, dp):
