@@ -5,14 +5,15 @@ class Solution:
         dp[n-1] = arr[n-1]
         
         for i in range(n-2, -1, -1):
+            maxi = -1
             for size in range(1, k+1):
                 st, end = i, i+size
                 if end > n:
                     break
-                elif end == n:
-                    res = max(arr[st:end])*size
-                else:
-                    res = max(arr[st:end])*size + dp[end]
+                maxi = max(maxi, arr[end-1])
+                res = maxi*size
+                if end != n:
+                    res += dp[end]
                 dp[i] = max(dp[i], res)
         
         return dp[0]
