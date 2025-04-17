@@ -30,4 +30,8 @@ Created using [LeetHub](https://github.com/QasimWani/LeetHub)
 |  |
 | ------- |
 | [0242-valid-anagram](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0242-valid-anagram) |
+## Database
+|  |
+| ------- |
+| [0175-combine-two-tables](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0175-combine-two-tables) |
 <!---LeetCode Topics End-->
