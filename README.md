@@ -25,6 +25,7 @@ Created using [LeetHub](https://github.com/QasimWani/LeetHub)
 ## Hash Table
 |  |
 | ------- |
+| [0001-two-sum](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0001-two-sum) |
 | [0242-valid-anagram](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0242-valid-anagram) |
 ## Sorting
 |  |
@@ -34,4 +35,8 @@ Created using [LeetHub](https://github.com/QasimWani/LeetHub)
 |  |
 | ------- |
 | [0175-combine-two-tables](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0175-combine-two-tables) |
+## Array
+|  |
+| ------- |
+| [0001-two-sum](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0001-two-sum) |
 <!---LeetCode Topics End-->
