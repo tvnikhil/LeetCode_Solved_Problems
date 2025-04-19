@@ -30,6 +30,7 @@ Created using [LeetHub](https://github.com/QasimWani/LeetHub)
 ## Sorting
 |  |
 | ------- |
+| [0015-3sum](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0015-3sum) |
 | [0242-valid-anagram](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0242-valid-anagram) |
 ## Database
 |  |
@@ -39,4 +40,9 @@ Created using [LeetHub](https://github.com/QasimWani/LeetHub)
 |  |
 | ------- |
 | [0001-two-sum](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0001-two-sum) |
+| [0015-3sum](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0015-3sum) |
+## Two Pointers
+|  |
+| ------- |
+| [0015-3sum](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0015-3sum) |
 <!---LeetCode Topics End-->
