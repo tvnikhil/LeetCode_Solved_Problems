@@ -1,12 +1,14 @@
 class Solution:
-    def twoSum(self, arr: List[int], target: int) -> List[int]:
-        p, q = 0, len(arr)-1
-        while p < q:
-            if arr[p]+arr[q] == target:
-                return [p+1,q+1]
-            if arr[p]+arr[q] > target:
-                q -= 1
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        p1, p2 = 0, len(numbers)-1
+
+        while p1 < p2:
+            if numbers[p1]+numbers[p2] == target:
+                return [p1+1, p2+1]
+            if numbers[p1]+numbers[p2] < target:
+                p1 += 1
             else:
-                p += 1
-        return [0,0]
-            
+                p2 -= 1
+        
+        return []
+        
