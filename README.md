@@ -43,10 +43,12 @@ Created using [LeetHub](https://github.com/QasimWani/LeetHub)
 | [0004-median-of-two-sorted-arrays](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0004-median-of-two-sorted-arrays) |
 | [0015-3sum](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0015-3sum) |
 | [0053-maximum-subarray](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0053-maximum-subarray) |
+| [0167-two-sum-ii-input-array-is-sorted](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0167-two-sum-ii-input-array-is-sorted) |
 ## Two Pointers
 |  |
 | ------- |
 | [0015-3sum](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0015-3sum) |
+| [0167-two-sum-ii-input-array-is-sorted](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0167-two-sum-ii-input-array-is-sorted) |
 ## Divide and Conquer
 |  |
 | ------- |
@@ -60,4 +62,5 @@ Created using [LeetHub](https://github.com/QasimWani/LeetHub)
 |  |
 | ------- |
 | [0004-median-of-two-sorted-arrays](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0004-median-of-two-sorted-arrays) |
+| [0167-two-sum-ii-input-array-is-sorted](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0167-two-sum-ii-input-array-is-sorted) |
 <!---LeetCode Topics End-->
