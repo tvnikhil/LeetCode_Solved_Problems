@@ -63,4 +63,8 @@ Created using [LeetHub](https://github.com/QasimWani/LeetHub)
 | ------- |
 | [0004-median-of-two-sorted-arrays](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0004-median-of-two-sorted-arrays) |
 | [0167-two-sum-ii-input-array-is-sorted](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0167-two-sum-ii-input-array-is-sorted) |
+## Math
+|  |
+| ------- |
+| [0007-reverse-integer](https://github.com/tvnikhil/LeetCode_Solved_Problems/tree/master/0007-reverse-integer) |
 <!---LeetCode Topics End-->
